@@ -64,6 +64,8 @@ export async function setup(
   worktreePRNumber?: number,
   messagingSocketPath?: string,
 ): Promise<void> {
+  console.error("DEBUG: cc-haha is starting up...");
+  console.error(`DEBUG: Using Provider: ${process.env.API_PROVIDER}`);
   logForDiagnosticsNoPII('info', 'setup_started')
 
   // Check for Node.js version < 18

@@ -1,0 +1,1 @@
+/Users/ruiqingl/.copilot/session-state/d1feaf31-8e00-4b1c-94ca-452e6a2f1bba/tmp-cc/code-structure-guide.md
