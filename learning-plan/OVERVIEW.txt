@@ -1,1 +1,301 @@
-/Users/ruiqingl/.copilot/session-state/d1feaf31-8e00-4b1c-94ca-452e6a2f1bba/OVERVIEW.txt
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                   Claude Code (cc-haha) Learning Roadmap                       ║
+║                         Complete Study & Development Path                      ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+📊 HIGH-LEVEL SYSTEM ARCHITECTURE
+═════════════════════════════════════════════════════════════════════════════════
+
+    ┌──────────────────────────────────────────────────┐
+    │        User Input (CLI / Desktop UI)             │
+    └─────────────────┬────────────────────────────────┘
+                      │
+                      ▼
+    ┌──────────────────────────────────────────────────┐
+    │   CLI Entrypoint (cli.tsx) → Main.tsx            │
+    │   • Parse arguments                              │
+    │   • Initialize TUI                               │
+    └─────────────────┬────────────────────────────────┘
+                      │
+                      ▼
+    ┌──────────────────────────────────────────────────┐
+    │     QueryEngine (Core Execution Engine)          │
+    │  • Manage conversation & context                 │
+    │  • Run agentic query loop                        │
+    │  • Route to tools                                │
+    │  • Handle streaming                              │
+    └─────────────────┬────────────────────────────────┘
+                      │
+            ┌─────────┴─────────┐
+            │   Tool System     │
+            │  (src/tools/)     │
+            └─────────┬─────────┘
+                      │
+        ┌─────────────┼─────────────┐
+        │             │             │
+        ▼             ▼             ▼
+      Bash          Grep          Edit
+     (Shell)      (Search)      (Files)
+      + More...
+
+
+    ┌──────────────────────────────────────────────────┐
+    │    Anthropic API (Claude LLM)                    │
+    │  • Process tool_use messages                     │
+    │  • Stream completions                            │
+    └──────────────────────────────────────────────────┘
+                      │
+                      ▼
+    ┌──────────────────────────────────────────────────┐
+    │    Terminal UI (Ink + React)                     │
+    │  • Render interactive TUI                        │
+    │  • Handle user input                             │
+    │  • Display results                               │
+    └──────────────────────────────────────────────────┘
+
+
+📚 6-PHASE LEARNING ROADMAP
+═════════════════════════════════════════════════════════════════════════════════
+
+PHASE 1: HIGH-LEVEL ARCHITECTURE (30-45 min)
+───────────────────────────────────────────────────────────────────────────────
+Goal: Build mental models of the system
+Topics:
+  • Project structure & organization
+  • Tech stack (Bun, React, Ink, Anthropic SDK)
+  • 8 core architecture diagrams
+  • Request lifecycle overview (input → output)
+Key Files: README.md, AGENTS.md, docs/reference/project-structure.md
+Checkpoint: Can you draw the system architecture?
+
+
+PHASE 2: CORE ENGINE & PIPELINE (2-3 hours)
+───────────────────────────────────────────────────────────────────────────────
+Goal: Understand how requests execute
+Topics:
+  • QueryEngine deep dive (main orchestrator)
+  • Tool system architecture (definition → execution)
+  • Message & context flow
+  • Anthropic SDK integration
+Key Files: src/QueryEngine.ts, src/Tool.ts, src/tools/, src/context.ts
+Checkpoint: Can you trace a query from input → tool → result?
+
+
+PHASE 3: UI & TERMINAL RENDERING (1.5-2 hours)
+───────────────────────────────────────────────────────────────────────────────
+Goal: Learn how React + Ink creates interactive terminal UI
+Topics:
+  • Ink terminal rendering engine
+  • TUI components & layouts
+  • Terminal input & output handling
+Key Files: src/ink/, src/components/, src/screens/REPL.tsx
+Checkpoint: Can you create a simple Ink component?
+
+
+PHASE 4: MULTI-AGENT SYSTEM (2-3 hours)
+───────────────────────────────────────────────────────────────────────────────
+Goal: Master the sophisticated agent orchestration
+Topics:
+  • AgentTool routing (4 agent types)
+  • Agent execution engine (lifecycle & query loop)
+  • Context forking & caching
+  • Team coordination & swarm infrastructure
+Key Files: src/tools/AgentTool/, src/utils/forkedAgent.ts, src/utils/swarm/
+Checkpoint: Can you spawn an agent and trace its execution?
+
+
+PHASE 5: ADVANCED FEATURES (1-1.5 hours)
+───────────────────────────────────────────────────────────────────────────────
+Goal: Explore sophisticated add-ons
+Topics:
+  • Memory system (cross-session persistence)
+  • Skills system (extensible workflows)
+  • Channel system (Telegram/Feishu remote control)
+  • Computer Use (desktop automation)
+  • Desktop app (Tauri + React GUI)
+Key Files: docs/memory/, docs/skills/, docs/channel/, desktop/
+Checkpoint: Can you explain one advanced feature?
+
+
+PHASE 6: HANDS-ON DEVELOPMENT (3-5 hours)
+───────────────────────────────────────────────────────────────────────────────
+Goal: Build custom extensions to cement understanding
+Topics:
+  • Building custom tools
+  • Adding slash commands
+  • Creating skills & workflows
+  • Extending with third-party models
+Key Files: src/tools/, src/commands/, src/skills/
+Checkpoint: Can you build and test a custom tool?
+
+
+📁 KEY FILES TO STUDY
+═════════════════════════════════════════════════════════════════════════════════
+
+Entry Points:
+  src/entrypoints/cli.tsx      ← Start here
+  src/main.tsx                 ← TUI orchestration
+  bin/claude-haha              ← Executable
+
+Core Engine:
+  src/QueryEngine.ts           ← Main orchestrator (★★★)
+  src/Tool.ts                  ← Tool base class
+  src/context.ts               ← Context & messages
+
+Tools & Agents:
+  src/tools/                   ← Tool implementations
+  src/tools/AgentTool/         ← Multi-agent system (★★★)
+  src/tools/AgentTool/runAgent.ts  ← Agent execution
+
+UI & Rendering:
+  src/ink/                     ← Ink setup
+  src/components/              ← Terminal components
+  src/screens/REPL.tsx         ← Main interactive screen
+
+Services & Integration:
+  src/services/                ← API, MCP, OAuth
+  src/bridge/                  ← Message routing, IM adapters
+
+Advanced Systems:
+  src/memdir/                  ← Memory system
+  src/skills/                  ← Skills
+  src/state/                   ← State management
+
+Documentation:
+  README.md                    ← Feature overview
+  AGENTS.md                    ← Guidelines & structure
+  docs/agent/02-implementation.md  ← Agent deep dive (★★★)
+  docs/reference/project-structure.md  ← Directory layout
+
+
+⏱️ TIME INVESTMENT ESTIMATE
+═════════════════════════════════════════════════════════════════════════════════
+
+Phase 1 (Foundational):       45 min
+Phase 2 (Deep Core):          2.5 hours
+Phase 3 (UI):                 1.75 hours
+                    Subtotal: ~5 hours (foundational understanding)
+
+Phase 4 (Complex):            2.5 hours
+Phase 5 (Features):           1.25 hours
+Phase 6 (Hands-On):           4 hours
+                    Subtotal: ~8 hours (comprehensive + practical)
+
+TOTAL: ~12-20 hours for complete understanding
+
+
+🎯 LEARNING APPROACH
+═════════════════════════════════════════════════════════════════════════════════
+
+For each topic:
+  1. READ (20-30 mins)     — Primary source files & documentation
+  2. TRACE (15-20 mins)    — Add console.log, run locally, observe flow
+  3. MODIFY (10-15 mins)   — Change something small, verify behavior
+  4. BUILD (20-45 mins)    — Create tool, component, or command
+  5. DEBUG (15-30 mins)    — Fix issues, learn from errors
+
+
+💻 COMMANDS TO REMEMBER
+═════════════════════════════════════════════════════════════════════════════════
+
+# Run CLI
+./bin/claude-haha                    # Interactive TUI mode
+./bin/claude-haha -p "your prompt"   # Headless mode
+
+# Server (for desktop dev)
+SERVER_PORT=3456 bun run src/server/index.ts
+
+# Desktop dev
+cd desktop && bun run dev
+
+# Documentation
+bun run docs:dev
+
+# Help
+./bin/claude-haha --help
+
+
+🔗 QUICK REFERENCE LINKS
+═════════════════════════════════════════════════════════════════════════════════
+
+Main Learning Files:
+  → plan.md                    — Detailed 6-phase roadmap
+  → quick-reference.md         — One-page cheat sheet
+  → code-structure-guide.md    — Deep dive documentation
+
+In Repository:
+  → README.md                  — Feature overview & quick start
+  → AGENTS.md                  — Project guidelines
+  → docs/agent/02-implementation.md  — Multi-agent deep dive
+  → docs/guide/faq.md          — Common questions
+
+
+🚀 GETTING STARTED
+═════════════════════════════════════════════════════════════════════════════════
+
+1. Start with Phase 1 (plan.md)
+   → Spend 30-45 minutes reading overview docs
+
+2. Read quick-reference.md
+   → Familiarize yourself with key files
+
+3. Explore src/ directory
+   → ls -la src/
+   → Get sense of module organization
+
+4. Study QueryEngine.ts
+   → Understand the core execution flow
+
+5. Pick one tool, trace its implementation
+   → e.g., src/tools/bash/ or src/tools/grep/
+
+6. Continue with phases 2-6
+   → Follow structured path in plan.md
+
+
+✅ LEARNING CHECKPOINTS
+═════════════════════════════════════════════════════════════════════════════════
+
+Phase 1: Can you draw the system architecture? (boxes & arrows)
+Phase 2: Can you trace a query from CLI input → tool → result?
+Phase 3: Can you create a simple Ink component?
+Phase 4: Can you spawn a subagent and see it execute?
+Phase 5: Can you explain one advanced feature (memory/skills/channels)?
+Phase 6: Can you build and test a custom tool?
+
+
+📝 KEY TAKEAWAYS
+═════════════════════════════════════════════════════════════════════════════════
+
+Claude Code (cc-haha) is built on:
+
+✓ Clean Architecture
+  → Entry → Engine → Tools → Output
+  → Clear separation of concerns
+  → Modular, testable design
+
+✓ Sophisticated Agent System
+  → Subagents, forks, teammates, remote agents
+  → Context inheritance & caching
+  → Team coordination via mailboxes
+
+✓ Powerful Extensions
+  → Memory system for learning
+  → Skills for workflows
+  → Channels for remote control
+  → Computer Use for automation
+
+✓ Modern UI
+  → React + Ink for terminal UI
+  → Responsive, interactive experience
+  → Desktop app via Tauri
+
+✓ Open Integration
+  → MCP servers
+  → Third-party models (OpenAI, DeepSeek, etc.)
+  → Plugins & custom tools
+
+
+═════════════════════════════════════════════════════════════════════════════════
+                    Happy learning! Start with Phase 1 🚀
+═════════════════════════════════════════════════════════════════════════════════

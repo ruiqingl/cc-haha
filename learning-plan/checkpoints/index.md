@@ -1,1 +1,6 @@
-/Users/ruiqingl/.copilot/session-state/d1feaf31-8e00-4b1c-94ca-452e6a2f1bba/checkpoints/index.md
+# Checkpoint History
+
+Checkpoints are listed in chronological order. Checkpoint 1 is the oldest, higher numbers are more recent.
+
+| # | Title | File |
+|---|-------|------|

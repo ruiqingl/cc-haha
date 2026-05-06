@@ -1,1 +1,21 @@
-/Users/ruiqingl/.copilot/session-state/d1feaf31-8e00-4b1c-94ca-452e6a2f1bba/vscode.metadata.json
+{
+  "origin": "vscode",
+  "workspaceFolder": {
+    "folderPath": "/Users/ruiqingl/learnings/ai/azure-search-openai-demo",
+    "timestamp": 1777757487706
+  },
+  "writtenToDisc": true,
+  "repositoryProperties": {
+    "repositoryPath": "/Users/ruiqingl/learnings/ai/azure-search-openai-demo",
+    "branchName": "main",
+    "baseBranchName": "origin/main",
+    "upstreamBranchName": "origin/main",
+    "baseCommit": "7859d2523470bad5b565faa04b3881858c0ee82c",
+    "mergeBaseCommit": "7859d2523470bad5b565faa04b3881858c0ee82c",
+    "hasGitHubRemote": true,
+    "incomingChanges": 0,
+    "outgoingChanges": 0,
+    "uncommittedChanges": 0
+  },
+  "customTitle": "Understanding Claude Code Design and Implementation"
+}
